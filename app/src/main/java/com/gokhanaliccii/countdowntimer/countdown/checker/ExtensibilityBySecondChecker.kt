@@ -8,4 +8,8 @@ class ExtensibilityBySecondChecker(
     override fun isTimeExtensible(remain: Long): Boolean {
         return remain + increment <= max
     }
+
+    override fun isReachedToMaxLimit(remain: Long): Boolean {
+        return remain + increment > max
+    }
 }
