@@ -11,6 +11,14 @@ class RemainSecondFormatterTest {
         val givenMilliSecond = 999L
         val remainSecondFormatter = RemainSecondFormatter()
 
-        assertThat(remainSecondFormatter.format(givenMilliSecond), equalTo("9"))
+        assertThat(remainSecondFormatter.format(givenMilliSecond), equalTo("0 : 9"))
+    }
+
+    @Test
+    fun `should show second with single millisecond for given millisecond`() {
+        val givenMilliSecond = 1100L
+        val remainSecondFormatter = RemainSecondFormatter()
+
+        assertThat(remainSecondFormatter.format(givenMilliSecond), equalTo("1 : 1"))
     }
 }
