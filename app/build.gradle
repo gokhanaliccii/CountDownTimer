@@ -15,6 +15,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -26,11 +31,18 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    kapt kaptLibraries.archLifeCycle
+
+    implementation libraries.archLifeCycle
     implementation libraries.kotlinStdLib
     implementation libraries.appCompat
     implementation libraries.constraintLayout
+    implementation libraries.rxKotlin
+    implementation libraries.rxAndroid
 
     testImplementation testLibraries.junit4
+    testImplementation testLibraries.archCoreTesting
+    testImplementation testLibraries.liveDateTesting
     androidTestLibraries.testRunner
     androidTestLibraries.espresso
 }

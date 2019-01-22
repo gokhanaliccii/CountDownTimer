@@ -2,6 +2,7 @@ package com.gokhanaliccii.countdowntimer
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.gokhanaliccii.countdowntimer.countdown.CountDownTimerFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -9,9 +10,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        savedInstanceState.let {
+        if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.content_frame, CountDownTimerFragment())
+                .replace(R.id.content_frame,
+                    CountDownTimerFragment()
+                )
                 .commit()
         }
 
