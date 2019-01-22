@@ -1,4 +1,4 @@
-package com.gokhanaliccii.countdowntimer
+package com.gokhanaliccii.countdowntimer.countdown
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -9,19 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.gokhanaliccii.countdowntimer.common.display
 import com.gokhanaliccii.countdowntimer.common.hide
-import com.gokhanaliccii.countdowntimer.countdown.CountDownViewModel
-import com.gokhanaliccii.countdowntimer.countdown.UIState
+import com.gokhanaliccii.countdowntimer.core.ViewModelFactory
 import com.gokhanaliccii.countdowntimer.databinding.FragmentCountdownBinding
 
 class CountDownTimerFragment : Fragment() {
-
     private lateinit var countDownViewModel: CountDownViewModel
     private lateinit var layoutBinding: FragmentCountdownBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        countDownViewModel = ViewModelProviders.of(this)[CountDownViewModel::class.java]
+        countDownViewModel =
+                ViewModelProviders.of(this, ViewModelFactory())[CountDownViewModel::class.java]
     }
 
     override fun onCreateView(

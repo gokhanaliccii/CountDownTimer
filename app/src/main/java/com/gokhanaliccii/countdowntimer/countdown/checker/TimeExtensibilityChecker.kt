@@ -1,6 +1,6 @@
 package com.gokhanaliccii.countdowntimer.countdown.checker
 
-interface TimeExtensibility {
+interface TimeExtensibilityChecker {
 
     fun isTimeExtensible(remain: Long): Boolean
 

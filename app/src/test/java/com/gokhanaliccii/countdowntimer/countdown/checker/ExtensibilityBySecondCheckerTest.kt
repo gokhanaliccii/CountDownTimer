@@ -13,7 +13,7 @@ class ExtensibilityBySecondCheckerTest {
         const val TWO_MINUTE = 2 * 60L
     }
 
-    private lateinit var timeExtensibility: TimeExtensibility
+    private lateinit var timeExtensibility: TimeExtensibilityChecker
 
     @Before
     fun setUp() {
