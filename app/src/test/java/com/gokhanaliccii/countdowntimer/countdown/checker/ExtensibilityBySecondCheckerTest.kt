@@ -37,4 +37,11 @@ class ExtensibilityBySecondCheckerTest {
 
         assertFalse(timeExtensibility.isTimeExtensible(remainSecond))
     }
+
+    @Test
+    fun `should time exceed max limit`() {
+        val remainSecond = TimeUnit.SECONDS.toSeconds(111)
+
+        assertTrue(timeExtensibility.isReachedToMaxLimit(remainSecond))
+    }
 }
