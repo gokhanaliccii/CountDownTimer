@@ -11,6 +11,7 @@ ext {
     archLifeCycleVersion = "1.1.1"
 
     junit4Version = "4.12"
+    liveDateTestingVersion = "0.2.1"
     espressoVersion = "3.0.2"
     testRunnerVersion = "1.0.2"
 
@@ -29,8 +30,9 @@ ext {
     ]
 
     testLibraries = [
-            junit4              : "junit:junit:" + junit4Version,
-            archCoreTesting: "android.arch.core:core-testing:" + archLifeCycleVersion
+            junit4         : "junit:junit:" + junit4Version,
+            archCoreTesting: "android.arch.core:core-testing:" + archLifeCycleVersion,
+            liveDateTesting: "com.jraska.livedata:testing-ktx:" + liveDateTestingVersion
     ]
 
     kaptLibraries = [
