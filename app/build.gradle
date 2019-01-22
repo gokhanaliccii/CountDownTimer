@@ -41,6 +41,7 @@ dependencies {
     implementation libraries.rxAndroid
 
     testImplementation testLibraries.junit4
+    testImplementation testLibraries.archCoreTesting
     androidTestLibraries.testRunner
     androidTestLibraries.espresso
 }

@@ -29,7 +29,8 @@ ext {
     ]
 
     testLibraries = [
-            junit4: "junit:junit:" + junit4Version,
+            junit4              : "junit:junit:" + junit4Version,
+            archCoreTesting: "android.arch.core:core-testing:" + archLifeCycleVersion
     ]
 
     kaptLibraries = [
