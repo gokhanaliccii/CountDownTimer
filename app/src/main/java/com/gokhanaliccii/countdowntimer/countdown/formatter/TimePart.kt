@@ -1,4 +1,4 @@
-package com.gokhanaliccii.countdowntimer.countdown
+package com.gokhanaliccii.countdowntimer.countdown.formatter
 
 import java.util.concurrent.TimeUnit
 
@@ -12,5 +12,9 @@ fun toTimePart(millis: Long): TimePart {
     val second = TimeUnit.MILLISECONDS.toSeconds(remainMillis)
     remainMillis -= TimeUnit.SECONDS.toMillis(second)
 
-    return TimePart(minute, second, remainMillis)
+    return TimePart(
+        minute,
+        second,
+        remainMillis
+    )
 }
