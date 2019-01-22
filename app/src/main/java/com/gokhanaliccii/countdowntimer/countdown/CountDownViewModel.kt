@@ -23,45 +23,45 @@ class CountDownViewModel : ViewModel() {
     val displayedText = MutableLiveData<String>()
 
     private lateinit var disposable: Disposable
+    private val remainMillis = AtomicLong(TWO_MINUTE)
     private val remainSecondFormatter = RemainSecondFormatter()
     private val timeExtensibility = ExtensibilityBySecondChecker(
         TEN_SECOND, TWO_MINUTE
     )
-
-    private val remainMillis = AtomicLong(TWO_MINUTE)
-
 
     init {
         uiState.postValue(Initial)
         displayedText.postValue(INITIAL_DISPLAYED_TEXT)
     }
 
-    fun start() {
+    fun startCountDownTimer() {
         uiState.postValue(Counting)
 
         disposable = Observable.interval(HUNDRED_MILLI_SECOND, TimeUnit.MILLISECONDS)
-            .takeUntil {
-                remainMillis.get() <= 0L
-            }.map {
-                (remainMillis.get() - it)
-            }.doOnNext {
-                remainMillis.set(it!!)
-            }.map(remainSecondFormatter::format)
-            .doOnComplete {
-                uiState.postValue(Completed)
-            }
+            .map(this::toRemainingMillis)
+            .takeWhile(this::untilZero)
+            .doOnNext(this::updateRemainMillis)
+            .map(remainSecondFormatter::format)
+            .doOnComplete(this::notifyCountingCompleted)
             .subscribe {
                 displayedText.postValue(it)
             }
     }
 
+    private fun untilZero(millis: Long): Boolean = millis > 0
+
+    private fun toRemainingMillis(millis: Long) = (remainMillis.get() - millis)
+
+    private fun updateRemainMillis(millis: Long) = remainMillis.set(millis)
+
+    private fun notifyCountingCompleted() = uiState.postValue(Completed)
+
     fun incrementRemain() {
         val remain = remainMillis.get()
 
-        if (timeExtensibility.isTimeExtensible(remain)) {
-            remainMillis.set(remain + TimeUnit.SECONDS.toMillis(10))
-        } else if (timeExtensibility.isTimeExtensible(remain)) {
-            reset()
+        when {
+            timeExtensibility.isTimeExtensible(remain) -> remainMillis.set(remain + TEN_SECOND)
+            timeExtensibility.isReachedToMaxLimit(remain) -> reset()
         }
     }
 

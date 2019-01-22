@@ -15,8 +15,21 @@
         android:padding="15dp">
 
         <include
+            android:id="@+id/counting_container"
             layout="@layout/view_countingdown"
             app:viewModel="@{viewModel}" />
+
+        <TextView
+            android:id="@+id/text_completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COMPLETED"
+            android:textSize="@dimen/count_down_display_text_size"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>
