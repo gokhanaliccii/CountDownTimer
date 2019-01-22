@@ -10,13 +10,13 @@ class RemainSecondFormatter {
 
         val minute = TimeUnit.MILLISECONDS.toMinutes(millis)
         totalMillis -= TimeUnit.MINUTES.toMillis(minute)
-        val second = TimeUnit.MILLISECONDS.toSeconds(millis)
+        val second = TimeUnit.MILLISECONDS.toSeconds(totalMillis)
         totalMillis -= TimeUnit.SECONDS.toMillis(second)
 
-
-
-
-        return String.format("%d : %d", second, totalMillis / 100)
+        return when (minute) {
+            0L -> String.format("%d : %d", second, totalMillis / 100)
+            else -> String.format("%d : %d : %d", minute, second, totalMillis / 100)
+        }
     }
 
 }
