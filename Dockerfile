@@ -13,5 +13,8 @@ RUN mkdir android_sdk \
 && echo y | ./sdkmanager "platform-tools" "build-tools;28.0.0" \
 && echo y | ./sdkmanager --licenses
 
+ADD ./ source_code
 
+RUN cd source_code \
+&& ./gradlew assembleDebug
 
